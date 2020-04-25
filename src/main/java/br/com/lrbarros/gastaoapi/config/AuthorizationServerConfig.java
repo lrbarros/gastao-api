@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.oauth2.config.annotation.configurers.ClientDetailsServiceConfigurer;
 import org.springframework.security.oauth2.config.annotation.web.configuration.AuthorizationServerConfigurerAdapter;
 import org.springframework.security.oauth2.config.annotation.web.configuration.EnableAuthorizationServer;
@@ -19,31 +20,42 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 	@Autowired
 	private AuthenticationManager authenticationManager;
 	
+	@Autowired
+	private UserDetailsService userDetailsService;
+	
 	@Override
 	public void configure(ClientDetailsServiceConfigurer clients) throws Exception {
 		//Pode usar jdbc esse está apenas com um user por causa que esse o usuario é o servidor
 		clients.inMemory()
-			.withClient("angular")
-			.secret("@ngul@r0")
-			.scopes("read","write")
-			.authorizedGrantTypes("password","refresh_token")
-			.accessTokenValiditySeconds(20)
-			.refreshTokenValiditySeconds(3600 * 24);
+					.withClient("angular")
+					.secret("$2a$10$2AKDe5pCM2W8ysMJQUqK0Oe8IkMgCcLuimFqJfOgXZHF3pfvMPa.2")
+					.scopes("read","write")
+					.authorizedGrantTypes("password","refresh_token")
+					.accessTokenValiditySeconds(1800)
+					.refreshTokenValiditySeconds(3600 * 24)
+				.and()
+					.withClient("mobile")
+					.secret("$2a$10$RP9CCos6lN8S1VQJa2O5JO0jzCFQGwfSZk/CnhOFQTLtqQCNCbB/6")
+					.scopes("read") // Este é o scopo da aplicação
+					.authorizedGrantTypes("password","refresh_token")
+					.accessTokenValiditySeconds(1800)
+					.refreshTokenValiditySeconds(3600 * 24);;
 	}
 	
 	@Override
 	public void configure(AuthorizationServerEndpointsConfigurer endpoints) throws Exception {
 		endpoints
 			.tokenStore(tokenStore())
-			.accessTokenConverter(accessTokenConverter())
+			.accessTokenConverter(this.accessTokenConverter())
 			.reuseRefreshTokens(false)
+			.userDetailsService(userDetailsService)
 			.authenticationManager(authenticationManager);
 	}
 	
 	@Bean
 	public JwtAccessTokenConverter accessTokenConverter() {
 		JwtAccessTokenConverter accessTokenConverter = new JwtAccessTokenConverter();
-		accessTokenConverter.setSigningKey("algaworkss");
+		accessTokenConverter.setSigningKey("algaworks");
 		return accessTokenConverter  ;
 	}
 	@Bean
