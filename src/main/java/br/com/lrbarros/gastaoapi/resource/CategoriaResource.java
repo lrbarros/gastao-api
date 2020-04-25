@@ -47,7 +47,7 @@ public class CategoriaResource {
 		publisher.publishEvent(new RecursoCriadoEvent(this, response, categoriaSalva.getCodigo()));
 		return ResponseEntity.status(HttpStatus.CREATED).body(categoriaSalva);
 	}
-	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA')")
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_CATEGORIA') and #oauth2.hasScope('read')")
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
 		Categoria categoriaEncontrada = categoriaRepository.findById(codigo).orElse(null);

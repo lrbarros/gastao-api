@@ -28,14 +28,14 @@ public class AuthorizationServerConfig extends AuthorizationServerConfigurerAdap
 		//Pode usar jdbc esse está apenas com um user por causa que esse o usuario é o servidor
 		clients.inMemory()
 					.withClient("angular")
-					.secret("$2a$10$2AKDe5pCM2W8ysMJQUqK0Oe8IkMgCcLuimFqJfOgXZHF3pfvMPa.2")
+					.secret("$2a$10$RjapwSxqG6tyHa/cXnvPGuZd0BWdsUVCODW52EOL7sEG7XJLeHwVO")
 					.scopes("read","write")
 					.authorizedGrantTypes("password","refresh_token")
 					.accessTokenValiditySeconds(1800)
 					.refreshTokenValiditySeconds(3600 * 24)
 				.and()
 					.withClient("mobile")
-					.secret("$2a$10$RP9CCos6lN8S1VQJa2O5JO0jzCFQGwfSZk/CnhOFQTLtqQCNCbB/6")
+					.secret("$2a$10$cavbMucrhkxm/LF5bEaMwOIAEqVRl3DJg5vNuKOBtJggl01WGPVyu")
 					.scopes("read") // Este é o scopo da aplicação
 					.authorizedGrantTypes("password","refresh_token")
 					.accessTokenValiditySeconds(1800)
