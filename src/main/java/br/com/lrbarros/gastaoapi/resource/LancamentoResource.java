@@ -30,6 +30,7 @@ import br.com.lrbarros.gastaoapi.exceptionhandler.util.DescricaoErro.ErroDesenvo
 import br.com.lrbarros.gastaoapi.model.Lancamento;
 import br.com.lrbarros.gastaoapi.repository.LancamentoRepository;
 import br.com.lrbarros.gastaoapi.repository.filter.LancamentoFilter;
+import br.com.lrbarros.gastaoapi.repository.projection.ResumoLancamento;
 import br.com.lrbarros.gastaoapi.service.LancamentoService;
 import br.com.lrbarros.gastaoapi.service.exception.PessoaInexistenteOuInativaException;
 
@@ -54,6 +55,12 @@ public class LancamentoResource {
 	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
 	public Page<Lancamento> pesquisar(LancamentoFilter lancamentoFilter,Pageable pageable){
 		return lancamentoRepository.filtrar(lancamentoFilter,pageable);
+	}
+	@GetMapping(params = "resumo")
+	@ResponseStatus(HttpStatus.OK)
+	@PreAuthorize("hasAuthority('ROLE_PESQUISAR_LANCAMENTO') and #oauth2.hasScope('read')")
+	public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter,Pageable pageable){
+		return lancamentoRepository.resumir(lancamentoFilter,pageable);
 	}
 	
 	@GetMapping("/{codigo}")
