@@ -1,5 +1,8 @@
 package br.com.lrbarros.gastaoapi.service;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
@@ -25,6 +28,13 @@ public class LancamentoService {
 			throw new PessoaInexistenteOuInativaException();
 		}
 		return lancamentoRepository.save(lancamento);
+	}
+	
+	public Lancamento atualizar(Long codigo, @Valid Lancamento lancamento) {
+		//validacoes dentro dos métodos buscarLancamento e salvar
+		Lancamento lancamentoSalvo = buscarLancamento(codigo);
+		BeanUtils.copyProperties(lancamento, lancamentoSalvo, "codigo");
+		return salvar(lancamentoSalvo);
 	}
 	
 	public Lancamento buscarLancamento(Long codigo) {
