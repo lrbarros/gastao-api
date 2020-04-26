@@ -1,25 +1,23 @@
-CREATE TABLE pessoa(
-	codigo bigint(20) NOT NULL PRIMARY KEY AUTO_INCREMENT,
-	nome varchar(50) NOT NULL,
-	ativo boolean,
-	logradouro varchar(255),
-	numero varchar(10),
-	complemento varchar(100),
-	bairro varchar(100),
-	cep varchar(50),
-	cidade varchar(255),
-	estado varchar(100)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 ;
+CREATE TABLE pessoa (
+	codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+	nome VARCHAR(50) NOT NULL,
+	logradouro VARCHAR(30),
+	numero VARCHAR(30),
+	complemento VARCHAR(30),
+	bairro VARCHAR(30),
+	cep VARCHAR(30),
+	cidade VARCHAR(30),
+	estado VARCHAR(30),
+	ativo BOOLEAN NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-insert into pessoa (nome, ativo, logradouro, numero, complemento, bairro, cep , cidade, estado) 
-	values('administrador',true,'Rua Teste', '1', null, 'Bairro Teste', '86200000' , 'Londrina', 'Paraná');
-insert into pessoa (nome, ativo) values('Usuario1',true);
-INSERT INTO pessoa(nome,logradouro,numero,complemento,bairro,cep,cidade,estado,ativo) values('Luiz','Rua 1','1','casa','centro','86200000','Ibiporã','PR',true);
-INSERT INTO pessoa(nome,logradouro,numero,bairro,cep,cidade,estado,ativo) values('João','Rua norte','1','serraia','86200000','Ibiporã','PR',true);
-INSERT INTO pessoa(nome,logradouro,numero,bairro,cep,cidade,estado,ativo) values('Jose dos Santos','Rua sul','1','saida para londrina','86200000','Ibiporã','PR',true);
-INSERT INTO pessoa(nome,logradouro,numero,bairro,cep,cidade,estado,ativo) values('Maria Júlia','Rua Leste','1','Conjunto Henrique Alves Pereira','86200000','Ibiporã','PR',true);
-INSERT INTO pessoa(nome,logradouro,numero,bairro,cep,cidade,estado,ativo) values('Ana Beatriz','Rua Oeste','1','JD. Paranoá','86200000','Ibiporã','PR',true);
-INSERT INTO pessoa(nome,logradouro,numero,bairro,cep,cidade,estado,ativo) values('Oliveira','Rua das Maritacas','1','Centro','86200000','Ibiporã','PR',true);
-INSERT INTO pessoa(nome,logradouro,numero,bairro,cep,cidade,estado,ativo) values('Ondina','Rua dos Pineiros','1','Vila Rosana','86200000','Ibiporã','PR',true);
-INSERT INTO pessoa(nome,logradouro,numero,bairro,cep,cidade,estado,ativo) values('Tatiane','Rua das Camélias','1','Centro','86200000','Ibiporã','PR',false);
-INSERT INTO pessoa(nome,logradouro,numero,bairro,cep,cidade,estado,ativo) values('Helio','Rua dos mercenários','1','Centro','86200000','Ibiporã','PR',false);
+INSERT INTO pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('João Silva', 'Rua do Abacaxi', '10', null, 'Brasil', '38.400-121', 'Uberlândia', 'MG', true);
+INSERT INTO pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Maria Rita', 'Rua do Sabiá', '110', 'Apto 101', 'Colina', '11.400-121', 'Ribeirão Preto', 'SP', true);
+INSERT INTO pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Pedro Santos', 'Rua da Bateria', '23', null, 'Morumbi', '54.212-121', 'Goiânia', 'GO', true);
+INSERT INTO pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Ricardo Pereira', 'Rua do Motorista', '123', 'Apto 302', 'Aparecida', '38.400-12', 'Salvador', 'BA', true);
+INSERT INTO pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Josué Mariano', 'Av Rio Branco', '321', null, 'Jardins', '56.400-121', 'Natal', 'RN', true);
+INSERT INTO pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Pedro Barbosa', 'Av Brasil', '100', null, 'Tubalina', '77.400-121', 'Porto Alegre', 'RS', true);
+INSERT INTO pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Henrique Medeiros', 'Rua do Sapo', '1120', 'Apto 201', 'Centro', '12.400-121', 'Rio de Janeiro', 'RJ', true);
+INSERT INTO pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Carlos Santana', 'Rua da Manga', '433', null, 'Centro', '31.400-121', 'Belo Horizonte', 'MG', true);
+INSERT INTO pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Leonardo Oliveira', 'Rua do Músico', '566', null, 'Segismundo Pereira', '38.400-00', 'Uberlândia', 'MG', true);
+INSERT INTO pessoa (nome, logradouro, numero, complemento, bairro, cep, cidade, estado, ativo) values ('Isabela Martins', 'Rua da Terra', '1233', 'Apto 10', 'Vigilato', '99.400-121', 'Manaus', 'AM', true);
